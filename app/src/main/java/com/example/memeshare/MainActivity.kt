@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity(){
         progress.visibility=View.VISIBLE
 
         // Instantiate the RequestQueue.
-        val url = "https://meme-api.herokuapp.com/gimme"
+        val url = "https://meme-api.com/gimme"
 
         // Request a string response from the provided URL.
         val jsonObjectRequest = JsonObjectRequest(
@@ -64,8 +64,10 @@ class MainActivity : AppCompatActivity(){
 
                 }).into(memeImageView)
             },
-            {
+            {e->
+                progress.visibility=View.GONE
                 Toast.makeText(this,"Something went wrong!",Toast.LENGTH_LONG).show()
+                Log.d("MainActivityWrong",e.message.toString())
             })
 
         // Add the request to the RequestQueue.
